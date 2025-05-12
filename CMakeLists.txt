@@ -22,5 +22,11 @@ add_library(bitdogPatroLibs STATIC ${ALL_SOURCES})
 # Expõe os headers para quem usar essa lib
 target_include_directories(bitdogPatroLibs PUBLIC ${ALL_INCLUDES})
 
+# Vincula a biblioteca padrão do Raspberry Pi Pico (pico_stdlib) ao alvo bitdogPatroLibs.
+# Isso permite que o alvo utilize funcionalidades básicas fornecidas pela biblioteca.
+target_link_libraries(bitdogPatroLibs
+    pico_stdlib
+)
+
 # Cria um alias com namespace
 add_library(bitdog::patrolibs ALIAS bitdogPatroLibs)
