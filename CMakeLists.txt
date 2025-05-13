@@ -1,9 +1,31 @@
 cmake_minimum_required(VERSION 3.14)
 project(bitdogPatroLibs LANGUAGES C)
 
-# Coleta recursiva de todos os arquivos fonte e headers
-file(GLOB_RECURSE ALL_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
-file(GLOB_RECURSE ALL_INCLUDES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+# Primeiro coletamos todos os arquivos
+file(GLOB_RECURSE ALL_SOURCES_CONFIGURE CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
+file(GLOB_RECURSE ALL_INCLUDES_CONFIGURE CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+
+# Filtramos os arquivos se Wi-Fi estiver desativado
+if(NOT USE_WIFI)
+    # Remove arquivos da pasta wifi
+    set(ALL_SOURCES "")
+    set(ALL_INCLUDES "")
+    
+    foreach(source ${ALL_SOURCES_CONFIGURE})
+        if(NOT source MATCHES "/wifi/")
+            list(APPEND ALL_SOURCES ${source})
+        endif()
+    endforeach()
+    
+    foreach(header ${ALL_INCLUDES_CONFIGURE})
+        if(NOT header MATCHES "/wifi/")
+            list(APPEND ALL_INCLUDES ${header})
+        endif()
+    endforeach()
+else()
+    set(ALL_SOURCES ${ALL_SOURCES_CONFIGURE})
+    set(ALL_INCLUDES ${ALL_INCLUDES_CONFIGURE})
+endif()
 
 # Coleta apenas os diretórios onde os headers estão (sem duplicar)
 set(INCLUDE_DIRS "")
@@ -29,10 +51,6 @@ target_link_libraries(bitdogPatroLibs
 
 # Se Wi-Fi estiver habilitado, linka o lwIP 
 if(USE_WIFI)
-    target_include_directories(bitdogPatroLibs PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-    )
-    
     target_link_libraries(bitdogPatroLibs
         pico_cyw43_arch_lwip_threadsafe_background
     )
