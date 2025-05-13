@@ -1,3 +1,5 @@
+#ifdef USE_WIFI
+
 #include "wifi_udp.h"
 
 struct udp_pcb *gPCB = NULL;
@@ -95,3 +97,5 @@ void openUDPBind()
     printf("[UDP] Binding to port %d\n", UDP_BROADCAST_PORT);
     udp_bind(gPCB, IP_ANY_TYPE, UDP_BROADCAST_PORT);
 }
+
+#endif // USE_WIFI
