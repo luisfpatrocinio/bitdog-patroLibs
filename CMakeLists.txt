@@ -29,6 +29,10 @@ target_link_libraries(bitdogPatroLibs
 
 # Se Wi-Fi estiver habilitado, linka o lwIP 
 if(USE_WIFI)
+    target_include_directories(bitdogPatroLibs PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+    )
+    
     target_link_libraries(bitdogPatroLibs
         pico_cyw43_arch_lwip_threadsafe_background
     )
