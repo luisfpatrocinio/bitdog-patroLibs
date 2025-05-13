@@ -27,5 +27,13 @@ target_link_libraries(bitdogPatroLibs
     hardware_i2c
 )
 
+# Se Wi-Fi estiver habilitado, linka o lwIP 
+if(USE_WIFI)
+    target_link_libraries(bitdogPatroLibs
+        pico_cyw43_arch_lwip_threadsafe_background
+    )
+    target_compile_definitions(bitdogPatroLibs PRIVATE USE_WIFI)
+endif()
+
 # Cria alias para facilitar uso externo
 add_library(bitdog::patrolibs ALIAS bitdogPatroLibs)
