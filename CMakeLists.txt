@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.14)
 project(bitdogPatroLibs LANGUAGES C)
 
-# Lista todas as subpastas (assumidas como bibliotecas)
-file(GLOB ALL_ITEMS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
+# Coleta recursiva de todos os arquivos fonte e headers
+file(GLOB_RECURSE ALL_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
+file(GLOB_RECURSE ALL_INCLUDES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 
-set(LIB_DIRS "")
-foreach(item ${ALL_ITEMS})
-    if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${item}")
-        list(APPEND LIB_DIRS ${item})
-    endif()
+# Coleta apenas os diretórios onde os headers estão (sem duplicar)
+set(INCLUDE_DIRS "")
+foreach(header ${ALL_INCLUDES})
+    get_filename_component(dir ${header} DIRECTORY)
+    list(APPEND INCLUDE_DIRS ${dir})
 endforeach()
+list(REMOVE_DUPLICATES INCLUDE_DIRS)
 
-
-# Cria uma biblioteca estática com tudo
+# Cria a biblioteca estática
 add_library(bitdogPatroLibs STATIC ${ALL_SOURCES})
 
 # Expõe os headers para quem usar essa lib
-target_include_directories(bitdogPatroLibs PUBLIC ${ALL_INCLUDES})
+target_include_directories(bitdogPatroLibs PUBLIC ${INCLUDE_DIRS})
 
-# Link necessary Pico SDK hardware libraries to enable use of peripherals
-# such as ADC, PWM, and I2C within the bitdogPatroLibs target.
+# Link das bibliotecas padrão do PICO
 target_link_libraries(bitdogPatroLibs
     pico_stdlib
     hardware_adc
@@ -27,5 +27,5 @@ target_link_libraries(bitdogPatroLibs
     hardware_i2c
 )
 
-# Cria um alias com namespace
+# Cria alias para facilitar uso externo
 add_library(bitdog::patrolibs ALIAS bitdogPatroLibs)
