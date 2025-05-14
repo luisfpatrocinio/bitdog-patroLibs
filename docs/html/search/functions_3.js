@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['drawclearrectangle_0',['drawClearRectangle',['../draw_8c.html#a8385f77d8ec7d36237a2c3f8637efd35',1,'drawClearRectangle(int x, int y, int width, int height):&#160;draw.c'],['../draw_8h.html#a8385f77d8ec7d36237a2c3f8637efd35',1,'drawClearRectangle(int x, int y, int width, int height):&#160;draw.c']]],
+  ['drawemptyrectangle_1',['drawEmptyRectangle',['../draw_8c.html#a53571d808da24750f59018cdf3c07807',1,'drawEmptyRectangle(int x, int y, int width, int height):&#160;draw.c'],['../draw_8h.html#a53571d808da24750f59018cdf3c07807',1,'drawEmptyRectangle(int x, int y, int width, int height):&#160;draw.c']]],
+  ['drawerror_2',['drawError',['../text_8c.html#a98d3d1613fc56a45e4e0c6ff7e905375',1,'drawError(const char *msg):&#160;text.c'],['../text_8h.html#a98d3d1613fc56a45e4e0c6ff7e905375',1,'drawError(const char *msg):&#160;text.c']]],
+  ['drawheader_3',['drawHeader',['../text_8c.html#a0ffe33793abd1587eb832f7d40c7d237',1,'drawHeader(int x, int y, char *text):&#160;text.c'],['../text_8h.html#a0ffe33793abd1587eb832f7d40c7d237',1,'drawHeader(int x, int y, char *text):&#160;text.c']]],
+  ['drawimage_4',['drawImage',['../draw_8c.html#a1e12fb827ed296f30cfb590d4ef84111',1,'drawImage(const uint8_t *data, const long size, int x, int y):&#160;draw.c'],['../draw_8h.html#a1e12fb827ed296f30cfb590d4ef84111',1,'drawImage(const uint8_t *data, const long size, int x, int y):&#160;draw.c']]],
+  ['drawline_5',['drawLine',['../draw_8c.html#a670eabe51fc97973e3ae3b909b9a57dc',1,'drawLine(int x1, int y1, int x2, int y2):&#160;draw.c'],['../draw_8h.html#a670eabe51fc97973e3ae3b909b9a57dc',1,'drawLine(int x1, int y1, int x2, int y2):&#160;draw.c']]],
+  ['drawpixel_6',['drawPixel',['../draw_8c.html#aa2dab771cbe8d68506897f90536f8d3f',1,'drawPixel(int x, int y):&#160;draw.c'],['../draw_8h.html#aa2dab771cbe8d68506897f90536f8d3f',1,'drawPixel(int x, int y):&#160;draw.c']]],
+  ['drawrectangle_7',['drawRectangle',['../draw_8c.html#adb5f7d4c51422e08e945da43e65708c9',1,'drawRectangle(int x, int y, int width, int height):&#160;draw.c'],['../draw_8h.html#adb5f7d4c51422e08e945da43e65708c9',1,'drawRectangle(int x, int y, int width, int height):&#160;draw.c']]],
+  ['drawtext_8',['drawText',['../text_8c.html#ab485ea57c8ab606b272e1c7835fa8b77',1,'drawText(int x, int y, char *text):&#160;text.c'],['../text_8h.html#ab485ea57c8ab606b272e1c7835fa8b77',1,'drawText(int x, int y, char *text):&#160;text.c']]],
+  ['drawtextcentered_9',['drawTextCentered',['../text_8c.html#a0695351e1b7ed801481f7659c4464894',1,'drawTextCentered(char *text, int _y):&#160;text.c'],['../text_8h.html#a0695351e1b7ed801481f7659c4464894',1,'drawTextCentered(char *text, int _y):&#160;text.c']]],
+  ['drawwave_10',['drawWave',['../text_8c.html#ab851f848f4fca2af86247e22f55440be',1,'drawWave(int y, float speed, float amplitude):&#160;text.c'],['../text_8h.html#ab851f848f4fca2af86247e22f55440be',1,'drawWave(int y, float speed, float amplitude):&#160;text.c']]]
+];
