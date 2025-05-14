@@ -17,7 +17,7 @@ include(FetchContent)
 
 FetchContent_Declare(
   bitdoglibs
-  GIT_REPOSITORY https://github.com/your-username/bitdog-patroLibs.git
+  GIT_REPOSITORY https://github.com/luisfpatrocinio/bitdog-patroLibs.git
   GIT_TAG main
 )
 
