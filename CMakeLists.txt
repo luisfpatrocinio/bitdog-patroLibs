@@ -41,12 +41,24 @@ add_library(bitdogPatroLibs STATIC ${ALL_SOURCES})
 # Expõe os headers para quem usar essa lib
 target_include_directories(bitdogPatroLibs PUBLIC ${INCLUDE_DIRS})
 
+# Matriz de Led:
+include(FetchContent)
+
+# Incluindo bibliotecas externas no momento do build
+FetchContent_Declare(
+    ws2812b_animation
+    GIT_REPOSITORY https://github.com/TuriSc/RP2040-WS2812B-Animation.git
+    GIT_TAG main
+)
+FetchContent_MakeAvailable(ws2812b_animation)
+
 # Link das bibliotecas padrão do PICO
 target_link_libraries(bitdogPatroLibs
     pico_stdlib
     hardware_adc
     hardware_pwm
     hardware_i2c
+    ws2812b_animation
 )
 
 # Se Wi-Fi estiver habilitado, linka o lwIP 
