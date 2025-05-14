@@ -90,7 +90,7 @@ void drawWave(int y, float speed, float amplitude)
     }
 }
 
-void drawError(const char *msg)
+void drawError(char *msg)
 {
     clearDisplay();
     drawTextCentered(msg, 8);
