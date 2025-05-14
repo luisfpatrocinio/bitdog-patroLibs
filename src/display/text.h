@@ -45,6 +45,6 @@ void drawTextCentered(char *text, int _y);
  */
 void drawWave(int y, float speed, float amplitude);
 
-void drawError(const char *msg);
+void drawError(char *msg);
 
 #endif
