@@ -32,5 +32,5 @@ target_link_libraries(your_project
 ## 📄 License
 
 This project is licensed under the MIT License.  
-Feel free to use it in your projects -- just make sure to credit **Luis Felipe Patrocinio**.  
+Feel free to use it in your projects -- just make sure to credit **Luis Felipe Patrocinio** ([GitHub](https://github.com/luisfpatrocinio)).  
 See the [LICENSE](./LICENSE) file for full details.
