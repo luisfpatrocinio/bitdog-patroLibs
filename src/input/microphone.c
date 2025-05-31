@@ -1,3 +1,5 @@
+/* deactivated
+
 #include "microphone.h"
 #include "hardware/adc.h"
 #include <stdio.h>
@@ -126,3 +128,5 @@ void display_info(ssd1306_t *oled, uint8_t temperature, uint8_t humidity) {
 
     // ssd1306_show(oled);  // Atualiza o display
 }
+
+*/
