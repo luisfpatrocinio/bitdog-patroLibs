@@ -1,8 +1,9 @@
 #ifndef LED_H
 #define LED_H
 
-#include "pico/stdlib.h"
 #include "hardware/pwm.h"
+#include "pico/stdlib.h"
+#include <math.h>
 
 #define LED_RED_PIN 13
 #define LED_BLUE_PIN 12
@@ -18,5 +19,6 @@ void turnOffLeds();
 void manageLed(int led, int state);
 void setLedBrightness(int led, int brightness);
 void setAllLedsBrightness(int brightness);
+void pulseLed(int led, float speed);
 
 #endif
