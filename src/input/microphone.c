@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 #define MIC_ADC_PIN 28
-#define DHT_PIN 8
 
 void initMicrophone()
 {
