@@ -1,5 +1,4 @@
 #include "microphone.h"
-#include <stdio.h>
 
 #define MIC_ADC_PIN 28
 

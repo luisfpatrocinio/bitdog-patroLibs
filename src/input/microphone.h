@@ -1,12 +1,18 @@
 #ifndef MICROPHONE_H
 #define MICROPHONE_H
 
-void init_microphone();
-uint16_t read_microphone();
-void mostrar_valor_microfone(ssd1306_t *oled, uint16_t mic_value);
-bool dht11_read(int *temperature, int *humidity);
-void init_dht_sensor();
-bool read_dht_sensor(uint8_t *temperature, uint8_t *humidity);
-void display_info(ssd1306_t *oled, uint8_t temperature, uint8_t humidity);
+#include <stdint.h>
+#include "hardware/adc.h"
 
-#endif
+/**
+ * @brief Inicializa o hardware do ADC para o microfone.
+ */
+void initMicrophone();
+
+/**
+ * @brief Lê o valor analógico bruto do pino do microfone.
+ * @return O valor lido do ADC (0-4095).
+ */
+uint16_t readMicrophone();
+
+#endif // MICROPHONE_H
