@@ -38,6 +38,13 @@ void drawText(int x, int y, char *text);
 void drawTextCentered(char *text, int _y);
 
 /**
+ * @brief Draws centered text to the screen.
+ * @param text The text to draw.
+ * @param _y The Y-coordinate of the text
+ */
+void drawTextCenteredAlt(char *text, int _y);
+
+/**
  * @brief Draws a wave to the screen.
  * @param y Y-coordinate of the wave.
  * @param speed Speed of the wave animation.
