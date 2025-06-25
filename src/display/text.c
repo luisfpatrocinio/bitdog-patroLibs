@@ -23,7 +23,7 @@
  */
 void drawHeader(int x, int y, char *text)
 {
-    ssd1306_draw_string(&display, x, y, 2, text);
+  ssd1306_draw_string(&display, x, y, 2, text);
 }
 
 /**
@@ -37,7 +37,7 @@ void drawHeader(int x, int y, char *text)
  */
 void drawText(int x, int y, char *text)
 {
-    ssd1306_draw_string(&display, x, y, 1, text);
+  ssd1306_draw_string(&display, x, y, 1, text);
 }
 
 /**
@@ -52,12 +52,27 @@ void drawText(int x, int y, char *text)
  */
 void drawTextCentered(char *text, int _y)
 {
-    if (_y == -1)
-    {
-        _y = SCREEN_HEIGHT / 2 - 6;
-    }
-    int _x = SCREEN_WIDTH / 2 - 6 * strlen(text) / 2 - 1;
-    drawText(_x, _y, text);
+  if (_y == -1)
+  {
+    _y = SCREEN_HEIGHT / 2 - 6;
+  }
+  int _x = SCREEN_WIDTH / 2 - 6 * strlen(text) / 2 - 1;
+  drawText(_x, _y, text);
+}
+
+/**
+ * @brief Draws centered text to the screen.
+ *
+ * Calculates the X-coordinate to center the text horizontally and uses
+ * ssd1306_draw_string to draw the text.
+ *
+ * @param text The text to draw.
+ * @param _y The Y-coordinate of the text
+ */
+void drawTextCenteredAlt(char *text, int _y)
+{
+  int _x = SCREEN_WIDTH / 2 - 6 * strlen(text) / 2 - 1;
+  drawText(_x, _y, text);
 }
 
 /**
@@ -73,26 +88,26 @@ void drawTextCentered(char *text, int _y)
  */
 void drawWave(int y, float speed, float amplitude)
 {
-    static float time = 0;
-    time += speed / 100.0;
-    if (time > 2 * M_PI)
-    {
-        time = 0;
-    }
-    int _points = 12;
-    for (int i = 0; i < _points; i++)
-    {
-        int _x1 = SCREEN_WIDTH / _points * i;
-        int _x2 = SCREEN_WIDTH / _points * (i + 1);
-        int _y1 = y + sin(time + i * 30) * amplitude;
-        int _y2 = y + sin(time + (i + 1) * 30) * amplitude;
-        ssd1306_draw_line(&display, _x1, _y1, _x2, _y2);
-    }
+  static float time = 0;
+  time += speed / 100.0;
+  if (time > 2 * M_PI)
+  {
+    time = 0;
+  }
+  int _points = 12;
+  for (int i = 0; i < _points; i++)
+  {
+    int _x1 = SCREEN_WIDTH / _points * i;
+    int _x2 = SCREEN_WIDTH / _points * (i + 1);
+    int _y1 = y + sin(time + i * 30) * amplitude;
+    int _y2 = y + sin(time + (i + 1) * 30) * amplitude;
+    ssd1306_draw_line(&display, _x1, _y1, _x2, _y2);
+  }
 }
 
 void drawError(char *msg)
 {
-    clearDisplay();
-    drawTextCentered(msg, 8);
-    showDisplay();
+  clearDisplay();
+  drawTextCentered(msg, 8);
+  showDisplay();
 }
