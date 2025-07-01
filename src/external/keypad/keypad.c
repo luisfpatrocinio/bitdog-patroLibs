@@ -46,6 +46,8 @@ KeyEvent keypadScan()
   for (int row = 0; row < 4; row++)
   {
     gpio_put(LINE_PINS[row], 1);
+    sleep_us(5); // Dá tempo para o sinal estabilizar
+
     for (int col = 0; col < 4; col++)
     {
       if (gpio_get(COLUMN_PINS[col]))
@@ -53,15 +55,20 @@ KeyEvent keypadScan()
         event.row = row;
         event.col = col;
         event.pressed = true;
+
+        // Espera soltar
         while (gpio_get(COLUMN_PINS[col]))
         {
-          tight_loop_contents(); // Espera soltar
+          tight_loop_contents();
         }
-        gpio_put(LINE_PINS[row], 1);
+
+        gpio_put(LINE_PINS[row], 0);
         return event;
       }
     }
+
     gpio_put(LINE_PINS[row], 0);
+    sleep_us(5); // Dá tempo de descarregar capacitâncias
   }
 
   return event;
