@@ -17,6 +17,9 @@
 const int LINE_PINS[4] = {LINE1, LINE2, LINE3, LINE4};
 const int COLUMN_PINS[4] = {COLUMN1, COLUMN2, COLUMN3, COLUMN4};
 
+/**
+ * @brief Initializes the GPIO pins for the 4x4 matrix keypad.
+ */
 void initKeypad(void)
 {
   for (int i = 0; i < 4; i++)
@@ -31,31 +34,35 @@ void initKeypad(void)
   }
 }
 
-bool keypadScan(uint8_t *row, uint8_t *col)
+/**
+ * @brief Scans the keypad and returns the row and column of the pressed key.
+ *
+ * @return KeyEvent struct containing the row and column of the pressed key.
+ */
+KeyEvent keypadScan()
 {
-  // Garante que todas as linhas estão em 0 antes de começar
-  for (int r = 0; r < 4; r++)
-    gpio_put(LINE_PINS[r], 0);
+  KeyEvent event = {.pressed = false};
 
-  for (int r = 0; r < 4; r++)
+  for (int row = 0; row < 4; row++)
   {
-    gpio_put(LINE_PINS[r], 1); // Ativa a linha atual
-    for (int c = 0; c < 4; c++)
+    gpio_put(LINE_PINS[row], 1);
+    for (int col = 0; col < 4; col++)
     {
-      if (gpio_get(COLUMN_PINS[c]))
+      if (gpio_get(COLUMN_PINS[col]))
       {
-        if (row)
-          *row = r;
-        if (col)
-          *col = c;
-        // Debounce: espera o botão ser solto
-        while (gpio_get(COLUMN_PINS[c]))
-          tight_loop_contents();
-        gpio_put(LINE_PINS[r], 0); // Desativa a linha antes de sair
-        return true;
+        event.row = row;
+        event.col = col;
+        event.pressed = true;
+        while (gpio_get(COLUMN_PINS[col]))
+        {
+          tight_loop_contents(); // Espera soltar
+        }
+        gpio_put(LINE_PINS[row], 0);
+        return event;
       }
     }
-    gpio_put(LINE_PINS[r], 0); // Desativa a linha após varrer as colunas
+    gpio_put(LINE_PINS[row], 0);
   }
-  return false;
+
+  return event;
 }

@@ -15,6 +15,8 @@
 #ifndef KEYPAD_H
 #define KEYPAD_H
 
+#include "pico/stdlib.h"
+
 // Keypad line (row) GPIO pins
 #define LINE1 4
 #define LINE2 8
@@ -27,10 +29,19 @@
 #define COLUMN3 19
 #define COLUMN4 20
 
-extern const int LINE_PINS[4];
-extern const int COLUMN_PINS[4];
-
-#include "pico/stdlib.h"
+/**
+ * @brief Structure to store the row, column and pressed state of a key.
+ *
+ * @param row The row of the key.
+ * @param col The column of the key.
+ * @param pressed The pressed state of the key.
+ */
+typedef struct
+{
+  int row;
+  int col;
+  bool pressed;
+} KeyEvent;
 
 /**
  * @brief Initializes the GPIO pins for the 4x4 matrix keypad.
@@ -40,10 +51,8 @@ void initKeypad(void);
 /**
  * @brief Scans the keypad and returns the row and column of the pressed key.
  *
- * @param[out] row Pointer to store the row index (0-3) of the pressed key.
- * @param[out] col Pointer to store the column index (0-3) of the pressed key.
- * @return true if a key is pressed, false otherwise.
+ * @return KeyEvent struct containing the row and column of the pressed key.
  */
-bool keypadScan(uint8_t *row, uint8_t *col);
+KeyEvent keypadScan(void);
 
 #endif // KEYPAD_H
