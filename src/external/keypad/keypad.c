@@ -13,17 +13,9 @@
  * https://github.com/luisfpatrocinio/bitdog-patroLibs/blob/main/LICENSE
  */
 #include "keypad.h"
-#include "pico/stdlib.h"
 
 const int LINE_PINS[4] = {LINE1, LINE2, LINE3, LINE4};
 const int COLUMN_PINS[4] = {COLUMN1, COLUMN2, COLUMN3, COLUMN4};
-
-const int keypad_freq_map[4][4] = {
-    {262, 294, 330, 349},  // C4, D4, E4, F4
-    {392, 440, 494, 523},  // G4, A4, B4, C5
-    {587, 659, 698, 784},  // D5, E5, F5, G5
-    {880, 988, 1047, 1175} // A5, B5, C6, D6
-};
 
 void initKeypad(void)
 {

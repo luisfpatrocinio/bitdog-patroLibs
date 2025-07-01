@@ -30,8 +30,7 @@
 extern const int LINE_PINS[4];
 extern const int COLUMN_PINS[4];
 
-#include <stdint.h>
-#include <stdbool.h>
+#include "pico/stdlib.h"
 
 /**
  * @brief Initializes the GPIO pins for the 4x4 matrix keypad.
@@ -46,10 +45,5 @@ void initKeypad(void);
  * @return true if a key is pressed, false otherwise.
  */
 bool keypadScan(uint8_t *row, uint8_t *col);
-
-/**
- * @brief Frequency map for each key in the 4x4 matrix (Hz).
- */
-extern const int keypad_freq_map[4][4];
 
 #endif // KEYPAD_H
