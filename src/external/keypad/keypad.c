@@ -33,9 +33,13 @@ void initKeypad(void)
 
 bool keypadScan(uint8_t *row, uint8_t *col)
 {
+  // Garante que todas as linhas estão em 0 antes de começar
+  for (int r = 0; r < 4; r++)
+    gpio_put(LINE_PINS[r], 0);
+
   for (int r = 0; r < 4; r++)
   {
-    gpio_put(LINE_PINS[r], 1);
+    gpio_put(LINE_PINS[r], 1); // Ativa a linha atual
     for (int c = 0; c < 4; c++)
     {
       if (gpio_get(COLUMN_PINS[c]))
@@ -44,16 +48,14 @@ bool keypadScan(uint8_t *row, uint8_t *col)
           *row = r;
         if (col)
           *col = c;
-        // Wait for key release (debounce)
+        // Debounce: espera o botão ser solto
         while (gpio_get(COLUMN_PINS[c]))
-        {
           tight_loop_contents();
-        }
-        gpio_put(LINE_PINS[r], 0);
+        gpio_put(LINE_PINS[r], 0); // Desativa a linha antes de sair
         return true;
       }
     }
-    gpio_put(LINE_PINS[r], 0);
+    gpio_put(LINE_PINS[r], 0); // Desativa a linha após varrer as colunas
   }
   return false;
 }
