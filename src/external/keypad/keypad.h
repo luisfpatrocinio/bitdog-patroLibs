@@ -15,6 +15,21 @@
 #ifndef KEYPAD_H
 #define KEYPAD_H
 
+// Keypad line (row) GPIO pins
+#define LINE1 4
+#define LINE2 8
+#define LINE3 9
+#define LINE4 16
+
+// Keypad column GPIO pins
+#define COLUMN1 17
+#define COLUMN2 18
+#define COLUMN3 19
+#define COLUMN4 20
+
+extern const uint LINE_PINS[4];
+extern const uint COLUMN_PINS[4];
+
 #include <stdint.h>
 #include <stdbool.h>
 

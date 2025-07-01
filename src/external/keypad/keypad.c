@@ -15,18 +15,6 @@
 #include "keypad.h"
 #include "pico/stdlib.h"
 
-// Keypad line (row) GPIO pins
-#define LINE1 4
-#define LINE2 8
-#define LINE3 9
-#define LINE4 16
-
-// Keypad column GPIO pins
-#define COLUMN1 17
-#define COLUMN2 18
-#define COLUMN3 19
-#define COLUMN4 20
-
 const uint LINE_PINS[4] = {LINE1, LINE2, LINE3, LINE4};
 const uint COLUMN_PINS[4] = {COLUMN1, COLUMN2, COLUMN3, COLUMN4};
 
