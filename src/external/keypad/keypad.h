@@ -27,8 +27,8 @@
 #define COLUMN3 19
 #define COLUMN4 20
 
-extern const uint LINE_PINS[4];
-extern const uint COLUMN_PINS[4];
+extern const int LINE_PINS[4];
+extern const int COLUMN_PINS[4];
 
 #include <stdint.h>
 #include <stdbool.h>

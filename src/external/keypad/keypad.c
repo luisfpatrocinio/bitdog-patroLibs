@@ -15,8 +15,8 @@
 #include "keypad.h"
 #include "pico/stdlib.h"
 
-const uint LINE_PINS[4] = {LINE1, LINE2, LINE3, LINE4};
-const uint COLUMN_PINS[4] = {COLUMN1, COLUMN2, COLUMN3, COLUMN4};
+const int LINE_PINS[4] = {LINE1, LINE2, LINE3, LINE4};
+const int COLUMN_PINS[4] = {COLUMN1, COLUMN2, COLUMN3, COLUMN4};
 
 const int keypad_freq_map[4][4] = {
     {262, 294, 330, 349},  // C4, D4, E4, F4
