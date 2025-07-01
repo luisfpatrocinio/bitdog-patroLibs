@@ -73,3 +73,50 @@ KeyEvent keypadScan()
 
   return event;
 }
+
+// Checar se o teclado está conectado
+bool keypadIsConnected()
+{
+  // Configura as linhas como saída
+  for (int i = 0; i < 4; i++)
+  {
+    gpio_init(LINE_PINS[i]);
+    gpio_set_dir(LINE_PINS[i], GPIO_OUT);
+  }
+
+  // Configura as colunas como entrada com pull-down
+  for (int i = 0; i < 4; i++)
+  {
+    gpio_init(COLUMN_PINS[i]);
+    gpio_set_dir(COLUMN_PINS[i], GPIO_IN);
+    gpio_pull_down(COLUMN_PINS[i]);
+  }
+
+  // Lógica de teste
+  for (int r = 0; r < 4; r++)
+  {
+    // Ativa uma linha
+    gpio_put(LINE_PINS[r], 1);
+
+    // Dá um pequeno tempo para o sinal se estabilizar
+    sleep_us(10);
+
+    // Verifica se alguma coluna foi para nível alto
+    for (int c = 0; c < 4; c++)
+    {
+      if (gpio_get(COLUMN_PINS[c]))
+      {
+        // Se qualquer coluna ler '1', significa que há um caminho.
+        // Desativa a linha antes de retornar.
+        gpio_put(LINE_PINS[r], 0);
+        // Assume-se que o teclado está conectado.
+        return true;
+      }
+    }
+    // Desativa a linha antes de testar a próxima
+    gpio_put(LINE_PINS[r], 0);
+  }
+
+  // Se após testar todas as linhas nenhuma coluna subiu, o teclado está desconectado.
+  return false;
+}
