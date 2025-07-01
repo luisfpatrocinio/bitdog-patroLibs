@@ -57,7 +57,7 @@ KeyEvent keypadScan()
         {
           tight_loop_contents(); // Espera soltar
         }
-        gpio_put(LINE_PINS[row], 0);
+        gpio_put(LINE_PINS[row], 1);
         return event;
       }
     }
