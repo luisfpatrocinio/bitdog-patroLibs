@@ -71,21 +71,29 @@ void beep(int duration);
 
 /**
  * @brief Plays a tone with specified frequency and duration
- * 
+ *
  * Generates a PWM signal at the requested frequency for the specified duration.
  * Frequency accuracy depends on clock divider settings.
- * 
+ *
  * @param frequency Frequency of the tone in Hertz (Hz) (recommended range 100-5000Hz)
  * @param duration_ms Duration of the tone in milliseconds
- * 
+ *
  * @note Frequency range is limited by PWM capabilities
  * @warning Blocks execution during tone playback
  * @see initBuzzerPWM() must be called first
- * 
+ *
  * @code
  * playTone(440, 500); // Plays A4 note (440Hz) for 500ms
  * @endcode
  */
 void playTone(uint frequency, uint duration_ms);
+
+/**
+ * @brief Plays a welcome sequence of musical notes on the buzzer.
+ *
+ * @note This function blocks execution while the melody is playing.
+ * @see playTone()
+ */
+void playWelcomeTones();
 
 #endif // BUZZER_H
